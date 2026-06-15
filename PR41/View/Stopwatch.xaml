@@ -22,17 +22,24 @@
                 <Grid Grid.Column="0">
                     <StackPanel>
                         <Button Content="{Binding IsRunning, Converter={StaticResource StartStopConverter}}" 
-                                Margin="10" Padding="2" FontSize="12" MinHeight="25"/>
-                        <Button Content="Интервал" Margin="10" Padding="2" FontSize="12" Click="{Binding CommitInterval}" MinHeight="25"/>
-                        <ListBoxItem Content="{Binding Intervals}" Margin="10" Padding="2" FontSize="12" 
-                                     Background="White" Foreground="Black" MinHeight="320" 
-                                     BorderThickness="1" BorderBrush="Black"/>
+                                Margin="10" Padding="2" FontSize="12" MinHeight="25" Command="{Binding StartStopCommand}"/>
+                        <Button Content="Сброс" Margin="10" Padding="2" FontSize="12" 
+                                Command="{Binding ResetCommand}" MinHeight="25"/>
+                        <Button Content="Интервал" Margin="10" Padding="2" FontSize="12" 
+                                Command="{Binding CommitIntervalCommand}" MinHeight="25"/>
+                        <ListBox Margin="10" Padding="2" FontSize="12" ItemsSource="{Binding Intervals}"
+                                 Background="White" Foreground="Black" MinHeight="280" 
+                                 BorderThickness="1" BorderBrush="Black"/>
                     </StackPanel>
                 </Grid>
                 <Grid Grid.Column="1">
                     <TextBlock Text="{Binding ElapsedTime}" FontSize="48" FontWeight="Bold" 
                                HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DarkRed"/>
                 </Grid>
+
+                <Button Grid.Column="1" Content="Таймер" Height="20" Width="80" 
+                        HorizontalAlignment="Right" Margin="5" VerticalAlignment="Top"
+                        Click="Button_Click"/>
             </Grid>
         </Border>
     </Grid>

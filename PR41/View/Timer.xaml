@@ -11,6 +11,7 @@
 
     <Page.Resources>
         <converters:StartStopConverter x:Key="StartStopConverter"/>
+        <converters:BoolToEnabledConverter x:Key="BoolToEnabledConverter"/>
     </Page.Resources>
         <Grid Background="Black">
         <Border Opacity="1" Background="LightYellow" Margin="10">
@@ -19,10 +20,18 @@
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBox Text="{Binding TimerDuration, Mode=TwoWay}" Margin="10" Padding="2"
                              FontSize="48" FontWeight="Bold"  MinHeight="25" Foreground="DarkRed"
-                             Background="LightYellow" MinWidth="250" IsEnabled="{Binding IsRunning}"/>
-                        <Button MinHeight="25" Content="{Binding IsRunning, Converter={StaticResource StartStopConverter}}" 
-                                Command="{Binding StartStopCommand}" Width="100" />
+                             Background="LightYellow" MinWidth="250" IsEnabled="{Binding IsRunning, Converter={StaticResource BoolToEnabledConverter}}"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button MinHeight="25" Content="{Binding IsRunning, Converter={StaticResource StartStopConverter}}" 
+                                    Command="{Binding StartStopTimerCommand}" Width="100" Margin="10"/>
+                            <Button Margin="10" Width="100" Content="Сброс" Command="{Binding ResetTimerCommand}"
+                                    IsEnabled="{Binding IsRunning}"/>
+                        </StackPanel>
+
                     </StackPanel>
+                    <Button Content="Секундомер" Height="20" Width="80" 
+                        HorizontalAlignment="Right" Margin="5" VerticalAlignment="Top"
+                        Click="Button_Click"/>
                 </Grid>
             </Grid>
         </Border>
